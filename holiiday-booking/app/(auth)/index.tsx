@@ -1,25 +1,28 @@
 import { View, Text, Dimensions, TouchableOpacity } from "react-native";
-import { Image } from "expo-image";
 import { useRouter } from "expo-router";
 
+import { useVideoPlayer, VideoView } from "expo-video";
 
 const { width, height } = Dimensions.get("window");
+const videoSource =
+  "https://videos.pexels.com/video-files/3783819/3783819-sd_640_360_24fps.mp4";
 
-const Onboarding= () => {
+const Onboarding = () => {
   const router = useRouter();
+  const player = useVideoPlayer(videoSource, (player) => {
+    player.loop = true;
+    player.play();
+  });
   return (
-    <View className="flex-1 relative">
-      <Image
-        className="absolute"
-        style={{ width, height }}
-        source="https://images.unsplash.com/photo-1470468969717-61d5d54fd036?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NjR8fGd5bXxlbnwwfHwwfHx8MA%3D%3D"
+   <View className="flex-1 relative">
+     <VideoView
+        style={{ position: "absolute",height, width }}
+        player={player}
+        allowsFullscreen
+        nativeControls={false}
         contentFit="cover"
-        transition={1000}
+        
       />
-
-      <Text className="absolute top-1/2 font-bold text-black text-8xl px-4 ">
-    Run. Thrive. Energize.
-      </Text>
 
       <View className="absolute bottom-16 w-full px-4 ">
         <TouchableOpacity onPress={() => router.navigate("/login")}>
@@ -34,7 +37,7 @@ const Onboarding= () => {
           </View>
         </TouchableOpacity>
       </View>
-    </View>
+   </View>
   );
 };
 
