@@ -5,6 +5,9 @@ import { StatusBar } from 'expo-status-bar';
 import "../global.css"
 import { useColorScheme } from '@/hooks/useColorScheme';
 import { PaperProvider } from 'react-native-paper';
+import { ClerkProvider } from '@clerk/clerk-expo'
+import { tokenCache } from '@clerk/clerk-expo/token-cache'
+
 
 export default function RootLayout() {
   const colorScheme = useColorScheme();
@@ -20,8 +23,10 @@ export default function RootLayout() {
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
       <PaperProvider>
+      <ClerkProvider tokenCache={tokenCache}>
       <Slot/>
       <StatusBar style="auto" />
+      </ClerkProvider>
       </PaperProvider>
     </ThemeProvider>
   );
