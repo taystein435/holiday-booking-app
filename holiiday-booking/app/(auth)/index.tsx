@@ -25,13 +25,13 @@ const Onboarding = () => {
       />
 
       <View className="absolute bottom-16 w-full px-4 ">
-        <TouchableOpacity onPress={() => router.navigate("/sign-in")}>
+        <TouchableOpacity onPress={() => router.navigate("/login")}>
           <View className="w-full h-14 bg-[#00d3d8] rounded justify-center items-center ">
             <Text className="text-white font-extrabold  text-xl ">Log in</Text>
           </View>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => router.navigate("/sign-in")}>
+        <TouchableOpacity onPress={() => router.navigate("/login")}>
           <View className="w-full h-14 mt-3 bg-white rounded justify-center items-center ">
             <Text className="text-[#00d3d8] font-extrabold  text-xl ">Sign up</Text>
           </View>
